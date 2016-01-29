@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project2AMemeMeMemeEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,42 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pte-wA-Wsk">
+                                <rect key="frame" x="0.0" y="548" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="jba-XS-FAJ"/>
+                                    <constraint firstAttribute="height" constant="44" id="t02-6l-syA"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Open Photo Album" id="da2-7L-kS5">
+                                        <connections>
+                                            <action selector="openPhotoAlbum:" destination="BYZ-38-t0r" id="JaN-JV-OKd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Camera" id="K7i-DD-XSg">
+                                        <connections>
+                                            <action selector="camera:" destination="BYZ-38-t0r" id="uaW-YG-u9M"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pte-wA-Wsk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="528" id="GJY-hF-bCg"/>
+                            <constraint firstItem="pte-wA-Wsk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OTy-LK-pmN"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="oxh-AZ-ivK"/>
+                    <connections>
+                        <outlet property="camera" destination="K7i-DD-XSg" id="RPn-y6-Bhc"/>
+                        <outlet property="openPhotoAlbum" destination="da2-7L-kS5" id="6SP-cY-kL2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1260" y="385"/>
         </scene>
     </scenes>
 </document>
