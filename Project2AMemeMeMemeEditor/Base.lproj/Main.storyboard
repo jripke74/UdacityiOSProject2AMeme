@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pte-wA-Wsk">
-                                <rect key="frame" x="0.0" y="548" width="600" height="44"/>
+                                <rect key="frame" x="20" y="548" width="560" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="jba-XS-FAJ"/>
+                                    <constraint firstAttribute="width" constant="560" id="jba-XS-FAJ"/>
                                     <constraint firstAttribute="height" constant="44" id="t02-6l-syA"/>
                                 </constraints>
                                 <items>
@@ -29,23 +30,37 @@
                                             <action selector="openPhotoAlbum:" destination="BYZ-38-t0r" id="JaN-JV-OKd"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Camera" id="K7i-DD-XSg">
+                                    <barButtonItem width="5" systemItem="camera" id="K7i-DD-XSg">
                                         <connections>
                                             <action selector="camera:" destination="BYZ-38-t0r" id="uaW-YG-u9M"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r2z-uC-LT9">
+                                <rect key="frame" x="20" y="20" width="560" height="528"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="7yE-0F-1g0"/>
+                                    <constraint firstAttribute="height" constant="528" id="RKd-JR-6ap"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="560" id="vRS-ay-Z9U"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pte-wA-Wsk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="12f-WQ-orr"/>
+                            <constraint firstItem="pte-wA-Wsk" firstAttribute="top" secondItem="r2z-uC-LT9" secondAttribute="bottom" id="FC2-1Q-mFa"/>
                             <constraint firstItem="pte-wA-Wsk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="528" id="GJY-hF-bCg"/>
                             <constraint firstItem="pte-wA-Wsk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OTy-LK-pmN"/>
+                            <constraint firstItem="pte-wA-Wsk" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Wd2-Ch-r3U"/>
+                            <constraint firstItem="r2z-uC-LT9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fsO-Qo-BIb"/>
+                            <constraint firstItem="r2z-uC-LT9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="iBx-zS-dxk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oxh-AZ-ivK"/>
                     <connections>
                         <outlet property="camera" destination="K7i-DD-XSg" id="RPn-y6-Bhc"/>
+                        <outlet property="imageView" destination="r2z-uC-LT9" id="X5R-JI-Glt"/>
                         <outlet property="openPhotoAlbum" destination="da2-7L-kS5" id="6SP-cY-kL2"/>
                     </connections>
                 </viewController>

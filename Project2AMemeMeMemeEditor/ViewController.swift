@@ -8,17 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let picker = UIImagePickerController()
+    
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var openPhotoAlbum: UIBarButtonItem!
     @IBOutlet weak var camera: UIBarButtonItem!
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        picker.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,12 +28,24 @@ class ViewController: UIViewController {
     }
 
     @IBAction func openPhotoAlbum(sender: UIBarButtonItem) {
+        picker.allowsEditing = true
+        picker.sourceType = .PhotoLibrary
+        presentViewController(picker, animated: true, completion: nil)
     }
     
     @IBAction func camera(sender: UIBarButtonItem) {
     }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = chosenImage
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
 
