@@ -13,22 +13,73 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let picker = UIImagePickerController()
     
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName: UIColor.blackColor(),
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName: "1.3"
+    ]
+    
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var openPhotoAlbum: UIBarButtonItem!
     @IBOutlet weak var camera: UIBarButtonItem!
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         picker.delegate = self
-        
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        camera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
+    
+    func subscribeToKeyboardNotifications() {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if bottomTextField.isFirstResponder() {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if bottomTextField.isFirstResponder() {
+            view.frame.origin.y += getKeyboardHeight(notification)
+        }
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.CGRectValue().height
+    }
+    
     @IBAction func openPhotoAlbum(sender: UIBarButtonItem) {
         picker.allowsEditing = true
         picker.sourceType = .PhotoLibrary
@@ -36,27 +87,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func camera(sender: UIBarButtonItem) {
-        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
-            picker.allowsEditing = false
-            picker.sourceType = UIImagePickerControllerSourceType.Camera
-            picker.cameraCaptureMode = .Photo
-            picker.modalPresentationStyle = .FullScreen
-            presentViewController(picker,
-                animated: true,
-                completion: nil)
-        }
+        picker.allowsEditing = false
+        picker.sourceType = UIImagePickerControllerSourceType.Camera
+        picker.cameraCaptureMode = .Photo
+        picker.modalPresentationStyle = .FullScreen
+        presentViewController(picker,
+            animated: true,
+            completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imageView.contentMode = .ScaleAspectFit
-        imageView.image = chosenImage
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .ScaleAspectFill
+            imageView.image = chosenImage
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
 
 }
-
