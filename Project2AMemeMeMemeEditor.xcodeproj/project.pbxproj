@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89012DAB1C6120B300524D9A /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89012DAA1C6120B300524D9A /* ShareViewController.swift */; };
+		89012DAD1C61239400524D9A /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89012DAC1C61239400524D9A /* Meme.swift */; };
 		89CEB0881C5AEE6C00B93CA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEB0871C5AEE6C00B93CA4 /* AppDelegate.swift */; };
 		89CEB08A1C5AEE6C00B93CA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEB0891C5AEE6C00B93CA4 /* ViewController.swift */; };
 		89CEB08D1C5AEE6C00B93CA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89CEB08B1C5AEE6C00B93CA4 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89012DAA1C6120B300524D9A /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		89012DAC1C61239400524D9A /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		89CEB0841C5AEE6C00B93CA4 /* Project2AMemeMeMemeEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2AMemeMeMemeEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89CEB0871C5AEE6C00B93CA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89CEB0891C5AEE6C00B93CA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				89CEB08E1C5AEE6C00B93CA4 /* Assets.xcassets */,
 				89CEB0901C5AEE6C00B93CA4 /* LaunchScreen.storyboard */,
 				89CEB0931C5AEE6C00B93CA4 /* Info.plist */,
+				89012DAA1C6120B300524D9A /* ShareViewController.swift */,
+				89012DAC1C61239400524D9A /* Meme.swift */,
 			);
 			path = Project2AMemeMeMemeEditor;
 			sourceTree = "<group>";
@@ -135,6 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89012DAB1C6120B300524D9A /* ShareViewController.swift in Sources */,
+				89012DAD1C61239400524D9A /* Meme.swift in Sources */,
 				89CEB08A1C5AEE6C00B93CA4 /* ViewController.swift in Sources */,
 				89CEB0881C5AEE6C00B93CA4 /* AppDelegate.swift in Sources */,
 			);
@@ -286,6 +294,7 @@
 				89CEB0981C5AEE6C00B93CA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

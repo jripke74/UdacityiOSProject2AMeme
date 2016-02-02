@@ -17,24 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pte-wA-Wsk">
-                                <rect key="frame" x="0.0" y="548" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem title="Open Photo Album" id="da2-7L-kS5">
-                                        <connections>
-                                            <action selector="openPhotoAlbum:" destination="BYZ-38-t0r" id="JaN-JV-OKd"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem systemItem="camera" id="K7i-DD-XSg">
-                                        <connections>
-                                            <action selector="camera:" destination="BYZ-38-t0r" id="uaW-YG-u9M"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="20" y="748" width="760" height="44"/>
-                                </variation>
-                            </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="r2z-uC-LT9">
                                 <rect key="frame" x="0.0" y="20" width="600" height="528"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
@@ -66,6 +48,30 @@
                                     <rect key="frame" x="69" y="59" width="662" height="30"/>
                                 </variation>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pte-wA-Wsk">
+                                <rect key="frame" x="0.0" y="548" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Open Photo Album" id="da2-7L-kS5">
+                                        <connections>
+                                            <action selector="openPhotoAlbum:" destination="BYZ-38-t0r" id="JaN-JV-OKd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="camera" id="K7i-DD-XSg">
+                                        <connections>
+                                            <action selector="camera:" destination="BYZ-38-t0r" id="uaW-YG-u9M"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Create Meme" id="WHT-No-D0T">
+                                        <connections>
+                                            <action selector="createMeme:" destination="BYZ-38-t0r" id="JKC-h3-FhA"/>
+                                            <segue destination="9wS-Ps-CdQ" kind="presentation" id="Fjf-2o-QkK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="20" y="748" width="760" height="44"/>
+                                </variation>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -96,6 +102,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1260" y="384"/>
+        </scene>
+        <!--Share View Controller-->
+        <scene sceneID="qhO-Ro-zaL">
+            <objects>
+                <viewController id="9wS-Ps-CdQ" customClass="ShareViewController" customModule="Project2AMemeMeMemeEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fJx-x6-a8x"/>
+                        <viewControllerLayoutGuide type="bottom" id="KjG-rM-I2g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XZc-ra-Ja8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1u-Sv-oUY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="548"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QHo-gU-dRR"/>
+                    <connections>
+                        <outlet property="imageView" destination="I1u-Sv-oUY" id="52X-Yf-HYt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KVB-Sp-Tq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1923" y="384"/>
         </scene>
     </scenes>
 </document>

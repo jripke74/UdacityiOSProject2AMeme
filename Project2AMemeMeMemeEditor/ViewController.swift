@@ -108,6 +108,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func save() -> Meme {
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, completedImage: generateMemeImage())
+        return meme
+    }
     
+    func generateMemeImage() -> UIImage {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memeImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return memeImage
+    }
 
+    @IBAction func createMeme(sender: UIBarButtonItem) {
+        //let storyboard = self.storyboard
+        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("ShareViewController") as! ShareViewController
+        controller.meme = self.save()
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
 }
