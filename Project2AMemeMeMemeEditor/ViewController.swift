@@ -13,6 +13,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let picker = UIImagePickerController()
     
+    
+    //var meme: Meme!
+    
     let memeTextAttributes = [
         NSStrokeColorAttributeName: UIColor.blackColor(),
         NSForegroundColorAttributeName: UIColor.whiteColor(),
@@ -36,12 +39,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
+        camera.width = 50
     }
     
     override func viewWillAppear(animated: Bool) {
         camera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        //guard let memed = meme else { fatalError("Meme is nil") }
+        //self.share.image = memed.completedImage
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -98,7 +104,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .ScaleAspectFill
             imageView.image = chosenImage
         }
         dismissViewControllerAnimated(true, completion: nil)
@@ -109,8 +114,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func save() -> Meme {
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, completedImage: generateMemeImage())
-        return meme
+        guard let topText = topTextField.text else { fatalError("top is nil") }
+        guard let bottomText = bottomTextField.text else { fatalError("bottom is nil") }
+        guard let image = imageView.image else { fatalError("image is nil") }
+        let memedImage = Meme(topText: topText, bottomText: bottomText, image: image, completedImage: generateMemeImage())
+        return memedImage
     }
     
     func generateMemeImage() -> UIImage {
@@ -120,11 +128,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         return memeImage
     }
-
-    @IBAction func createMeme(sender: UIBarButtonItem) {
-        //let storyboard = self.storyboard
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("ShareViewController") as! ShareViewController
-        controller.meme = self.save()
-        self.presentViewController(controller, animated: true, completion: nil)
+    
+    func shareTapped(image: UIImage) {
+        let viewController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: [])
+        presentViewController(viewController, animated: true, completion: nil)
     }
+
+    @IBAction func share(sender: UIBarButtonItem) {
+        save()
+        
+        shareTapped(generateMemeImage())
+    }
+
 }
