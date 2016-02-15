@@ -9,9 +9,10 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let picker = UIImagePickerController()
+    let textField = UITextField()
     
     
     //var meme: Meme!
@@ -35,6 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        textField.delegate = self
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = "TOP"
@@ -135,7 +137,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func share(sender: UIBarButtonItem) {
-        save()
+        var saveMeme: Meme
+        saveMeme = save()
         
         shareTapped(generateMemeImage())
     }
