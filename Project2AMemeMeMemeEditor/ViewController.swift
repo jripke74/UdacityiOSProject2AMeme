@@ -13,9 +13,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let picker = UIImagePickerController()
     let textField = UITextField()
+    //var memes = [meme]
     
     
-    //var meme: Meme!
+    var meme: Meme!
     
     let memeTextAttributes = [
         NSStrokeColorAttributeName: UIColor.blackColor(),
@@ -115,31 +116,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func save() -> Meme {
+    func save(image: UIImage) {
         guard let topText = topTextField.text else { fatalError("top is nil") }
         guard let bottomText = bottomTextField.text else { fatalError("bottom is nil") }
-        guard let image = imageView.image else { fatalError("image is nil") }
-        let memedImage = Meme(topText: topText, bottomText: bottomText, image: image, completedImage: generateMemeImage())
-        return memedImage
+        //guard let image = image  else { fatalError("image is nil") }
+        let meme = Meme(topText: topText, bottomText: bottomText, image: image, completedImage: generateMemeImage())
+        //memes.append(meme)
     }
     
     func generateMemeImage() -> UIImage {
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
-        let memeImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return memeImage
+        return memedImage
     }
     
     func shareTapped(image: UIImage) {
-        let viewController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: [])
+        let viewController = UIActivityViewController(activityItems: [image], applicationActivities: [])
         presentViewController(viewController, animated: true, completion: nil)
+        
     }
 
     @IBAction func share(sender: UIBarButtonItem) {
-        var saveMeme: Meme
-        saveMeme = save()
-        
         shareTapped(generateMemeImage())
     }
 
