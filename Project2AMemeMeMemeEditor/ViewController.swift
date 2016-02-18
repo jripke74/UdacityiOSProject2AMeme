@@ -116,12 +116,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func save(image: UIImage) {
+    func save(memedImage: UIImage) {
         guard let topText = topTextField.text else { fatalError("top is nil") }
         guard let bottomText = bottomTextField.text else { fatalError("bottom is nil") }
         //guard let image = image  else { fatalError("image is nil") }
-        let meme = Meme(topText: topText, bottomText: bottomText, image: image, completedImage: generateMemeImage())
-        //memes.append(meme)
+        let meme = Meme(topText: topText, bottomText: bottomText, image: memedImage, completedImage: memedImage)
     }
     
     func generateMemeImage() -> UIImage {
@@ -134,6 +133,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func shareTapped(image: UIImage) {
         let viewController = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        viewController.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                self.save(image)
+            }
+        }
+        
         presentViewController(viewController, animated: true, completion: nil)
         
     }
