@@ -11,13 +11,8 @@ import AVFoundation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var topToolbar: UINavigationBar!
-    @IBOutlet weak var bottomToolbar: UIToolbar!
-    
     let picker = UIImagePickerController()
     let textField = UITextField()
-    //var memes = [meme]
-    
     
     var meme: Meme!
     
@@ -28,14 +23,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSStrokeWidthAttributeName: "1.3"
     ]
     
+    @IBOutlet weak var topToolbar: UINavigationBar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var openPhotoAlbum: UIBarButtonItem!
     @IBOutlet weak var camera: UIBarButtonItem!
-    
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +46,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         camera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
-        //guard let memed = meme else { fatalError("Meme is nil") }
-        //self.share.image = memed.completedImage
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -122,7 +114,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func save(memedImage: UIImage) {
         guard let topText = topTextField.text else { fatalError("top is nil") }
         guard let bottomText = bottomTextField.text else { fatalError("bottom is nil") }
-        //guard let image = image  else { fatalError("image is nil") }
         let meme = Meme(topText: topText, bottomText: bottomText, image: memedImage, completedImage: memedImage)
     }
     
@@ -145,13 +136,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.save(image)
             }
         }
-        
         presentViewController(viewController, animated: true, completion: nil)
-        
     }
 
     @IBAction func share(sender: UIBarButtonItem) {
-        
         shareTapped(generateMemeImage())
     }
 
