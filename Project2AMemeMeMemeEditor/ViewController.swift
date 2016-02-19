@@ -11,6 +11,9 @@ import AVFoundation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var topToolbar: UINavigationBar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    
     let picker = UIImagePickerController()
     let textField = UITextField()
     //var memes = [meme]
@@ -124,10 +127,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func generateMemeImage() -> UIImage {
+        topToolbar.hidden = true
+        bottomToolbar.hidden = true
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        topToolbar.hidden = false
+        bottomToolbar.hidden = false
         return memedImage
     }
     
@@ -144,6 +151,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func share(sender: UIBarButtonItem) {
+        
         shareTapped(generateMemeImage())
     }
 

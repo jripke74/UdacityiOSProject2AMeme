@@ -100,10 +100,12 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="FPN-NC-lCY" id="bJK-0P-DIh"/>
+                        <outlet property="bottomToolbar" destination="A0U-3H-ElK" id="A5S-UJ-8jQ"/>
                         <outlet property="camera" destination="YKr-T6-nS4" id="igF-3M-dWo"/>
                         <outlet property="imageView" destination="r2z-uC-LT9" id="X5R-JI-Glt"/>
                         <outlet property="openPhotoAlbum" destination="Je0-3L-Vyb" id="GbU-bg-kEL"/>
                         <outlet property="topTextField" destination="yLt-zX-P64" id="inq-qv-V6k"/>
+                        <outlet property="topToolbar" destination="oMb-5g-Ng0" id="Hi0-7p-u65"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
